@@ -1,51 +1,51 @@
 {
-	"name": "lb-audio-v3",
-	"version": "1.0.2",
-	"author": "SuperLy",
-	"files": [
-		"dist"
-	],
-	"main": "./dist/lb-audio-v3.js",
-	"module": "./dist/lb-audio-v3.js",
-	"style": "./dist/style.css",
-	"exports": {
-		".": {
-			"import": "./dist/lb-audio-v3.es.js",
-			"require": "./dist/lb-audio-v3.umd.js"
-		},
-		"./style": {
-			"import": "./dist/style.css",
-			"require": "./dist/style.css"
-		}
-	},
-	"description": "基于 Vue3 的音乐播放器小组件 拥有 播放/暂停、上/下一首、音量调节、播放顺序调节、歌词显示功能，后续将支持多种音频可视化特效，敬请期待...",
-	"keywords": [
-		"vue",
-		"vue3",
-		"audio",
-		"player",
-		"PC",
-		"mobile",
-		"component",
-		"components",
-		"ui"
-	],
-	"repository": "git://github.com/SuperLy1999/lb-audio-v3.git",
-	"license": "ISC",
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vue-tsc --noEmit && vite build",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"dependencies": {
-		"vue": "^3.2.25"
-	},
-	"devDependencies": {
-		"@types/node": "^17.0.45",
-		"@vitejs/plugin-vue": "^2.3.3",
-		"sass": "^1.52.1",
-		"typescript": "^4.5.4",
-		"vite": "^2.9.9",
-		"vue-tsc": "^0.34.7"
-	}
+    "name": "lb-audio-v3",
+    "version": "1.0.3",
+    "author": "KuAi9",
+    "files": [
+        "dist"
+    ],
+    "main": "./dist/lb-audio-v3.js",
+    "module": "./dist/lb-audio-v3.js",
+    "style": "./dist/style.css",
+    "exports": {
+        ".": {
+            "import": "./dist/lb-audio-v3.es.js",
+            "require": "./dist/lb-audio-v3.umd.js"
+        },
+        "./style": {
+            "import": "./dist/style.css",
+            "require": "./dist/style.css"
+        }
+    },
+    "description": "基于 Vue3 的音乐播放器小组件 拥有 播放/暂停、上/下一首、音量调节、播放顺序调节、歌词显示功能，后续将支持多种音频可视化特效，敬请期待...",
+    "keywords": [
+        "vue",
+        "vue3",
+        "audio",
+        "player",
+        "PC",
+        "mobile",
+        "component",
+        "components",
+        "ui"
+    ],
+    "repository": "git://github.com/KuAi9/lb-audio-v3.git",
+    "license": "ISC",
+    "scripts": {
+        "dev": "vite dev",
+        "build": "vue-tsc --noEmit && vite build",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "vue": "^3.2.25"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.45",
+        "@vitejs/plugin-vue": "^2.3.3",
+        "sass": "^1.52.1",
+        "typescript": "^4.5.4",
+        "vite": "^2.9.9",
+        "vue-tsc": "^0.34.7"
+    }
 }
