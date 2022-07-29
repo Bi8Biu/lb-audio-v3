@@ -77,7 +77,7 @@ import 'lb-audio-v3/style'
 备注：`musicItem` 类型如下：
 
 ```ts
-interface musicItem = {
+interface musicItem {
  name: string,  // 歌曲名称
  author: string,  // 歌手名
  url: string,  // 歌曲文件地址
