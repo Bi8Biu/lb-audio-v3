@@ -3,7 +3,7 @@
  * @Author: SuperLy
  * @LastEditors: KuAi9
  * @Date: 2022-05-30 12:28:50
- * @LastEditTime: 2022-07-29 11:36:55
+ * @LastEditTime: 2022-07-29 12:36:16
  * @FilePath: \lb-audio-v3\src\Audio\index.vue
 -->
 <template>
@@ -62,9 +62,8 @@
             </div>
             <!-- 歌曲进度条 -->
             <div ref="ProgressDom" progress="true"
-                :class="['audio-progress', (playState.buffer || ProgressMoveFlag) ? 'audio-progress-hover' : '']"
-                @mousedown="() => { if (playState.getDuration) ProgressMoveFlag = true }"
-                :style="{ cursor: ProgressDomLock ? 'wait' : 'pointer' }">
+                :class="['audio-progress', ProgressDomLock ? 'wait' : 'pointer', (playState.buffer || ProgressMoveFlag) ? 'audio-progress-hover' : '']"
+                @mousedown="() => { if (playState.getDuration) ProgressMoveFlag = true }">
                 <!-- 缓冲 -->
                 <div v-for=" cache of playState.bufferList" progress="true" class="cache" :style="{
                     width: (cache.end - cache.start) / playState.duration * 100 + '%',
@@ -752,6 +751,14 @@ export default defineComponent({
             background-color: #E5E5E5;
             border-radius: 5px;
 
+            &.pointer {
+                cursor: pointer;
+            }
+
+            &.wait {
+                cursor: wait;
+            }
+
             &.audio-progress-hover,
             &:hover {
                 .thumb {
@@ -868,6 +875,8 @@ export default defineComponent({
             box-shadow: 0 0 0px #808080 inset;
         }
 
+        scrollbar-color: #b7b7b7 transparent;
+        scrollbar-width: thin;
 
         &.show-list {
             // height: auto;
