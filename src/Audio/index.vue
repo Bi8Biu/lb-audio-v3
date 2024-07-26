@@ -860,7 +860,8 @@ export default defineComponent({
         box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
         overflow-y: scroll;
         /* 设置滚动调样式 */
-
+        scrollbar-color: #b7b7b7 transparent;
+        scrollbar-width: thin;
         &::-webkit-scrollbar {
             width: 4px;
             background-color: transparent;
@@ -874,9 +875,6 @@ export default defineComponent({
         &::-webkit-scrollbar-track {
             box-shadow: 0 0 0px #808080 inset;
         }
-
-        scrollbar-color: #b7b7b7 transparent;
-        scrollbar-width: thin;
 
         &.show-list {
             // height: auto;

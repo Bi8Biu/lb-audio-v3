@@ -1,10 +1,11 @@
 {
     "name": "lb-audio-v3",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "author": "KuAi9",
     "files": [
         "dist"
     ],
+    "types": "./dist/index.d.ts",
     "main": "./dist/lb-audio-v3.js",
     "module": "./dist/lb-audio-v3.js",
     "style": "./dist/style.css",
@@ -30,7 +31,10 @@
         "components",
         "ui"
     ],
-    "repository": "git://github.com/KuAi9/lb-audio-v3.git",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/KuAi9/lb-audio-v3.git"
+    },
     "license": "ISC",
     "scripts": {
         "dev": "vite dev",
@@ -38,14 +42,16 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
-        "vue": "^3.2.25"
+        "lb-audio-v3": "^1.0.5",
+        "vue": "^3.4.34"
     },
     "devDependencies": {
-        "@types/node": "^17.0.45",
-        "@vitejs/plugin-vue": "^2.3.3",
-        "sass": "^1.52.1",
-        "typescript": "^4.5.4",
-        "vite": "^2.9.9",
-        "vue-tsc": "^0.34.7"
+        "@types/node": "^20.14.12",
+        "@vitejs/plugin-vue": "^5.1.0",
+        "sass": "^1.77.8",
+        "typescript": "^5.5.4",
+        "vite": "^5.3.5",
+        "vite-plugin-dts": "^4.0.0-beta.1",
+        "vue-tsc": "^2.0.29"
     }
 }

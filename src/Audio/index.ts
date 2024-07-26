@@ -3,13 +3,11 @@
  * @Author: SuperLy
  * @LastEditors: SuperLy
  * @Date: 2022-05-13 20:41:10
- * @LastEditTime: 2022-06-16 16:16:55
- * @FilePath: \lb-audio-v3\src\Audio\index.ts
+ * @LastEditTime: 2024-07-26 18:06:55
  */
 import component from "./index.vue";
-import { App } from 'vue';
+import { App } from "vue";
 component.install = (app: App) => {
-	app.component(component.name, component)
-
-}
+    app.component(component.name as string, component);
+};
 export default component;
