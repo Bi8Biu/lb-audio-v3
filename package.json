@@ -1,6 +1,6 @@
 {
     "name": "lb-audio-v3",
-    "version": "1.0.6",
+    "version": "1.0.10",
     "author": "KuAi9",
     "files": [
         "dist"
@@ -11,6 +11,7 @@
     "style": "./dist/style.css",
     "exports": {
         ".": {
+            "types": "./dist/index.d.ts",
             "import": "./dist/lb-audio-v3.es.js",
             "require": "./dist/lb-audio-v3.umd.js"
         },

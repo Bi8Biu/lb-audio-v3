@@ -18,7 +18,7 @@ npm install lb-audio-v3
 ### 使用 yarn  安装
 
 ```shell
-yarn add lamb-ui
+yarn add lb-audio-v3 
 ```
 
 ### 使用之前
