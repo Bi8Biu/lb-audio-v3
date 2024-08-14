@@ -3,7 +3,7 @@
  * @Author: SuperLy
  * @LastEditors: LiuYang 2472104875@qq.com
  * @Date: 2022-05-30 12:24:22
- * @LastEditTime: 2024-07-26 16:27:38
+ * @LastEditTime: 2024-08-14 11:39:25
  * @FilePath: \lb-audio-v3\vite.config.ts
  */
 import { defineConfig } from "vite";
@@ -26,6 +26,7 @@ export default defineConfig({
                 globals: {
                     vue: "Vue",
                 },
+                exports: "named",
             },
         },
     },
@@ -33,6 +34,8 @@ export default defineConfig({
         vue(),
         dts({
             entryRoot: "./src/Audio",
+            outDir: "dist/types",
+            insertTypesEntry: true,
             tsconfigPath: "./tsconfig.json",
         }),
     ],

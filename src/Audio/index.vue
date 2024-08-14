@@ -1,9 +1,9 @@
 <!--
  * @Explain: xxx
  * @Author: SuperLy
- * @LastEditors: KuAi9 2472104875@qq.com
+ * @LastEditors: LiuYang 2472104875@qq.com
  * @Date: 2022-05-30 12:28:50
- * @LastEditTime: 2024-07-27 14:32:16
+ * @LastEditTime: 2024-08-14 12:21:45
  * @FilePath: \lb-audio-v3\src\Audio\index.vue
 -->
 <template>
@@ -25,10 +25,10 @@
                         : '暂无封面'
                 "
             >
-                <img src="@/assets/img/play-bar-middle.png" />
+                <img src="./img/play-bar-middle.png" />
                 <img
                     :class="playState.play ? 'play' : 'stop'"
-                    src="@/assets/img/play-bar.png"
+                    src="./img/play-bar.png"
                 />
             </div>
             <img
@@ -215,51 +215,36 @@
 </template>
 
 <script setup lang="ts">
-import getOffset from "@/assets/ts/getOffset";
-import parseLrc from "@/assets/ts/parseLrc";
+import getOffset from "./utils/getOffset";
+import parseLrc from "./utils/parseLrc";
 import { reactive, watch, ref, Ref, nextTick, onBeforeUnmount } from "vue";
-import defaultCover from '@/assets/img/default-cover.png';
-type musicItem = {
-    name: string;
-    author: string;
-    url: string;
-    img: string;
-    lrc: string;
-};
+import defaultCover from "./img/default-cover.png";
+import type { musicItemType, musicListType, playOrderType } from "./type";
 
 // props
-const { musicList, index, volume, lyrics, playOrder, playList } = defineProps({
-    // 歌曲列表
-    musicList: {
-        type: Array as () => Array<musicItem>,
-        required: true,
-    },
-    // 默认播放索引
-    index: {
-        type: Number,
-        default: 0,
-    },
-    // 默认音量
-    volume: {
-        type: Number,
-        default: 50,
-    },
-    // 歌词是否默认开启
-    lyrics: {
-        type: Boolean,
-        default: false,
-    },
-    // 歌曲默认播放顺序
-    playOrder: {
-        type: String as () => "along" | "random" | "loop",
-        default: "along",
-    },
-    // 是否默认显示播放列表
-    playList: {
-        type: Boolean,
-        default: false,
-    },
-});
+const { musicList, index, volume, lyrics, playOrder, playList } = withDefaults(
+    defineProps<{
+        // 歌曲列表
+        musicList: musicListType;
+        // 默认播放索引
+        index?: number;
+        // 默认音量
+        volume?: number;
+        // 歌词是否默认开启
+        lyrics: boolean;
+        // 歌曲默认播放顺序
+        playOrder: playOrderType;
+        // 是否默认显示播放列表
+        playList: boolean;
+    }>(),
+    {
+        index: 0,
+        volume: 50,
+        lyrics: false,
+        playOrder: "along",
+        playList: false,
+    }
+);
 
 // 自定义事件
 const emit = defineEmits(["error"]);
@@ -759,7 +744,7 @@ export default defineComponent({
     width: 320px;
     height: 64px;
     background-color: #f9f9f9;
-    *{
+    * {
         box-sizing: content-box;
     }
     .text-ellipsis {

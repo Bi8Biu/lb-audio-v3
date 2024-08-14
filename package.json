@@ -1,17 +1,15 @@
 {
     "name": "lb-audio-v3",
-    "version": "1.0.10",
+    "version": "1.1.1",
     "author": "KuAi9",
     "files": [
         "dist"
     ],
-    "types": "./dist/index.d.ts",
-    "main": "./dist/lb-audio-v3.js",
-    "module": "./dist/lb-audio-v3.js",
+    "types": "./dist/types/index.d.ts",
     "style": "./dist/style.css",
     "exports": {
         ".": {
-            "types": "./dist/index.d.ts",
+            "types": "./dist/types/index.d.ts",
             "import": "./dist/lb-audio-v3.es.js",
             "require": "./dist/lb-audio-v3.umd.js"
         },
