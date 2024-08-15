@@ -1,6 +1,6 @@
 {
     "name": "lb-audio-v3",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "author": "KuAi9",
     "files": [
         "dist"
@@ -41,16 +41,16 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
-        "lb-audio-v3": "^1.0.5",
+        "lb-audio-v3": "^1.1.1",
         "vue": "^3.4.34"
     },
     "devDependencies": {
-        "@types/node": "^20.14.12",
+        "@types/node": "^22.3.0",
         "@vitejs/plugin-vue": "^5.1.0",
         "sass": "^1.77.8",
         "typescript": "^5.5.4",
         "vite": "^5.3.5",
-        "vite-plugin-dts": "^4.0.0-beta.1",
+        "vite-plugin-dts": "^4.0.3",
         "vue-tsc": "^2.0.29"
     }
 }

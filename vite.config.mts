@@ -3,14 +3,13 @@
  * @Author: SuperLy
  * @LastEditors: LiuYang 2472104875@qq.com
  * @Date: 2022-05-30 12:24:22
- * @LastEditTime: 2024-08-14 11:39:25
+ * @LastEditTime: 2024-08-15 09:19:54
  * @FilePath: \lb-audio-v3\vite.config.ts
  */
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import dts from "vite-plugin-dts";
-
-const path = require("path");
+import path from "path";
 // https://vitejs.dev/config/
 
 export default defineConfig({

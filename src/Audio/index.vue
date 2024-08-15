@@ -3,7 +3,7 @@
  * @Author: SuperLy
  * @LastEditors: LiuYang 2472104875@qq.com
  * @Date: 2022-05-30 12:28:50
- * @LastEditTime: 2024-08-14 12:21:45
+ * @LastEditTime: 2024-08-15 10:11:46
  * @FilePath: \lb-audio-v3\src\Audio\index.vue
 -->
 <template>
@@ -154,7 +154,8 @@
             >
                 <!-- 缓冲 -->
                 <div
-                    v-for="cache of playState.bufferList"
+                    v-for="(cache, i) of playState.bufferList"
+                    :key="i"
                     progress="true"
                     class="cache"
                     :style="{
@@ -197,6 +198,7 @@
         >
             <div
                 v-for="(music, i) of musicList"
+                :key="music.name + i"
                 :class="[playState.index === i ? 'cur' : '']"
                 @click="playState.index = i"
             >
@@ -219,10 +221,10 @@ import getOffset from "./utils/getOffset";
 import parseLrc from "./utils/parseLrc";
 import { reactive, watch, ref, Ref, nextTick, onBeforeUnmount } from "vue";
 import defaultCover from "./img/default-cover.png";
-import type { musicItemType, musicListType, playOrderType } from "./type";
+import type { musicListType, playOrderType } from "./type";
 
 // props
-const { musicList, index, volume, lyrics, playOrder, playList } = withDefaults(
+const props = withDefaults(
     defineProps<{
         // 歌曲列表
         musicList: musicListType;
@@ -231,13 +233,14 @@ const { musicList, index, volume, lyrics, playOrder, playList } = withDefaults(
         // 默认音量
         volume?: number;
         // 歌词是否默认开启
-        lyrics: boolean;
+        lyrics?: boolean;
         // 歌曲默认播放顺序
-        playOrder: playOrderType;
+        playOrder?: playOrderType;
         // 是否默认显示播放列表
-        playList: boolean;
+        playList?: boolean;
     }>(),
     {
+        musicList: () => [],
         index: 0,
         volume: 50,
         lyrics: false,
@@ -325,7 +328,7 @@ nextTick(() => {
         // 加载失败
         audio.value.addEventListener("error", () => {
             // 触发加载错误事件
-            emit("error", musicList[playState.index]);
+            emit("error", props.musicList[playState.index]);
             // 下一首
             next();
         });
@@ -372,22 +375,22 @@ type playStateType = {
 };
 
 // 播放状态
-const playState: playStateType = reactive({
-    index,
+const playState = reactive<playStateType>({
+    index: props.index,
     play: false,
-    volume,
+    volume: props.volume,
     duration: 0,
     getDuration: false,
     progress: 0,
     buffer: true,
     bufferList: [],
-    lyrics,
-    lrcList: parseLrc(musicList[index]?.lrc),
+    lyrics: props.lyrics,
+    lrcList: parseLrc(props.musicList[props.index]?.lrc),
     curLrcIndex: 0,
-    playOrder,
+    playOrder: props.playOrder,
     coverTimer: undefined,
     angle: 0,
-    playList,
+    playList: props.playList,
 });
 
 // 监听播放状态变化
@@ -430,7 +433,7 @@ const previous = () => {
     if (playState.playOrder === "random") {
         randomIndex.value--;
         if (randomIndex.value < 0) {
-            randomIndex.value = musicList.length - 1;
+            randomIndex.value = props.musicList.length - 1;
         }
         playState.index = randomIndexList[randomIndex.value];
     } else {
@@ -442,7 +445,7 @@ const previous = () => {
 const next = () => {
     if (playState.playOrder === "random") {
         randomIndex.value++;
-        if (randomIndex.value >= musicList.length) {
+        if (randomIndex.value >= props.musicList.length) {
             randomIndex.value = 0;
         }
         playState.index = randomIndexList[randomIndex.value];
@@ -455,8 +458,8 @@ watch(
     () => playState.index,
     (newVal) => {
         if (newVal < 0) {
-            playState.index = musicList.length - 1;
-        } else if (newVal >= musicList.length) {
+            playState.index = props.musicList.length - 1;
+        } else if (newVal >= props.musicList.length) {
             playState.index = 0;
         }
     }
@@ -465,7 +468,7 @@ watch(
 // 播放顺序 和 播放列表 功能
 
 // 随机索引数组,用于随机播放时的索引
-const randomIndexList = [...new Array(musicList.length).keys()];
+const randomIndexList = [...new Array(props.musicList.length).keys()];
 randomIndexList.sort(() => {
     return Math.random() - 0.5;
 });
@@ -657,7 +660,7 @@ onBeforeUnmount(() => {
 watch(
     () => playState.index,
     (newVal) => {
-        playState.lrcList = parseLrc(musicList[newVal]?.lrc);
+        playState.lrcList = parseLrc(props.musicList[newVal]?.lrc);
         // 重置歌词索引
         playState.curLrcIndex = 0;
         // 更新歌词
